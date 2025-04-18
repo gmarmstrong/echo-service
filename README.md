@@ -4,6 +4,10 @@ Tiny Go HTTP server that simply echoes the request it receives. May be useful fo
 
 ![CI](https://github.com/gmarmstrong/echo-service/actions/workflows/build-image.yaml/badge.svg)
 
+## Background reading
+
+- <https://www.alexedwards.net/blog/an-introduction-to-handlers-and-servemuxes-in-go>
+
 ## Requirements
 
 Requirements vary depending on how you want to use this.
