@@ -8,6 +8,13 @@ Tiny Go HTTP server that simply echoes the request it receives. May be useful fo
 
 - <https://www.alexedwards.net/blog/an-introduction-to-handlers-and-servemuxes-in-go>
 
+## TODOs
+
+- Enforce a minimum test coverage
+- More logging in ./cmd/echo-service/main.go
+- Integration tests (run server and test the endpoints)
+- End-to-end Kubernetes tests
+
 ## Requirements
 
 Requirements vary depending on how you want to use this.

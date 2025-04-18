@@ -12,8 +12,6 @@ import (
 	"time"
 )
 
-// TODO Could use some more logging
-
 // responsePayload mirrors the incoming request so callers can verify round‑trip.
 type responsePayload struct {
 	Method  string              `json:"method"`
