@@ -16,10 +16,12 @@ Requirements vary depending on how you want to use this.
 
 ## Usage
 
-### Basic usage (with Go, no Docker)
+### Quick start (run from source)
 
 ```sh
 go run ./cmd/echo-service
+# In another terminal:
+curl -s http://localhost:8080/hello | jq .
 ```
 
 ### Docker usage (with Docker, no K8s)
