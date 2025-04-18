@@ -60,7 +60,30 @@ and you should get
 
 ### Kubernetes usage
 
-- TODO
+The manifests in `k8s/` let you spin up the service on any cluster.  
+
+These instructions use minikube.
+On Kind or a real cluster, just skip the minikube‑specific commands.
+
+```sh
+# Start a local cluster
+minikube start
+
+# Build or load the image inside minikube's container runtime
+eval "$(minikube -p minikube docker-env)"
+docker build -t echo-service:0.1.0 .
+
+# Deploy the manifests
+kubectl apply -f k8s/
+kubectl rollout status deployment/echo-service
+
+# Access the service
+minikube service echo-service --url       # prints http://<node-ip>:<port>
+curl -s $(minikube service echo-service --url)/hello | jq .
+```
+
+If port 8080 is reserved on your machine, you can change the port in `k8s/deployment.yaml`
+or use `kubectl set env deployment/echo-service PORT=9090`.
 
 ## Project structure
 
