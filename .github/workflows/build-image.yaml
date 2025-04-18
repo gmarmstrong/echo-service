@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     tags: ["v*.*.*"]
-    paths: ["**/*.go", "Dockerfile", "k8s/**", ".github/workflows/build-image.yaml"]
+    paths: ["**/*.go", "Dockerfile", ".github/workflows/build-image.yaml"]
   workflow_dispatch:
 
 permissions:
