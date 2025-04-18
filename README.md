@@ -82,8 +82,32 @@ minikube service echo-service --url       # prints http://<node-ip>:<port>
 curl -s $(minikube service echo-service --url)/hello | jq .
 ```
 
-If port 8080 is reserved on your machine, you can change the port in `k8s/deployment.yaml`
-or use `kubectl set env deployment/echo-service PORT=9090`.
+## Endpoints
+
+| Path       | Method | Purpose                   | Typical response        |
+|------------|--------|---------------------------|-------------------------|
+| `/{any}`   | GET    | Echo request back as JSON | 200 `application/json`  |
+| `/healthz` | GET    | Liveness/readiness probe  | 204 No Content          |
+
+The service listens on `PORT` (default **8080**).  
+You can override it by setting that environment variable using kubectl or
+by editing `k8s/deployment.yaml`:
+
+```yaml
+env:
+  - name: PORT
+    value: "9090"
+ports:
+  - containerPort: 9090
+readinessProbe:
+  httpGet:
+    path: /healthz
+    port: 9090
+livenessProbe:
+  httpGet:
+    path: /healthz
+    port: 9090
+```
 
 ## Project structure
 
