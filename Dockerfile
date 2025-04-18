@@ -8,8 +8,10 @@ COPY . .
 RUN CGO_ENABLED=0 GOOS=linux go build -o /echo-service ./cmd/echo-service
 
 # --- Runtime stage ---
-FROM alpine:3.21
-COPY --from=build /echo-service /usr/local/bin/echo-service
-EXPOSE 8080
-ENV PORT=8080
-ENTRYPOINT ["/usr/local/bin/echo-service"]
+FROM gcr.io/distroless/static-debian12:nonroot
+
+# Copy the statically linked binary produced in the builder stage
+COPY --from=build /echo-service /echo-service
+
+# Distroless images have no shell, so the entrypoint must be JSON‑array form
+ENTRYPOINT ["/echo-service"]
