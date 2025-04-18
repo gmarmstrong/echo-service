@@ -109,6 +109,30 @@ livenessProbe:
     port: 9090
 ```
 
+## Development & CI
+
+### CI flow
+
+The *Build container image* workflow (`.github/workflows/build-image.yml`) runs on every push to `main` (and on tag pushes). It:
+
+1. Builds a multi‑arch Docker image with Buildx  
+2. Tags it based on the Git ref (`v0.x.y`, `sha‑<digest>`)  
+3. Pushes the image to GHCR
+
+### Local testing
+
+```sh
+# Static analysis
+go vet ./cmd/echo-service
+
+# Unit tests (once added)
+go test .
+
+# Check that the image builds and runs
+docker build -t echo-service:dev .
+docker run --rm -p 8080:8080 echo-service:dev
+```
+
 ## Project structure
 
 Kubernetes manifests are stored in the `k8s/` directory for convenience.
