@@ -6,7 +6,8 @@ Tiny Go HTTP server that simply echoes the request it receives. May be useful fo
 
 ## Background reading
 
-- <https://www.alexedwards.net/blog/an-introduction-to-handlers-and-servemuxes-in-go>
+- [Writing Web Applications](https://go.dev/doc/articles/wiki/) in the Go documentation
+- [An Introduction to Handlers and Servemuxes in Go](https://www.alexedwards.net/blog/an-introduction-to-handlers-and-servemuxes-in-go) by Alex Edwards
 
 ## TODOs
 
