@@ -139,3 +139,7 @@ Alternatively, if you prefer monorepos, you could do something like:
     ├── production
     └── staging
 ```
+
+## License
+
+This project uses the MIT license. See [LICENSE](LICENSE) for the full text.
