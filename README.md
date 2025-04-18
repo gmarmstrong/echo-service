@@ -14,6 +14,8 @@ Tiny Go HTTP server that simply echoes the request it receives. May be useful fo
 - More logging in ./cmd/echo-service/main.go
 - Integration tests (run server and test the endpoints)
 - End-to-end Kubernetes tests
+- Prometheus counters and a `/metrics` endpoint
+- Container signing and hardening
 
 ## Requirements
 
