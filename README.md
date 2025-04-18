@@ -1,5 +1,9 @@
 # echo-service
 
+Tiny Go HTTP server that simply echoes the request it receives. May be useful for debugging clients, load‑balancers, or service meshes.
+
+![CI](https://github.com/gmarmstrong/echo-service/actions/workflows/build-image.yml/badge.svg)
+
 ## Usage
 
 ### Basic usage (with Go, no Docker)
