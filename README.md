@@ -148,37 +148,6 @@ docker build -t echo-service:dev .
 docker run --rm -p 8080:8080 echo-service:dev
 ```
 
-## Project structure
-
-Kubernetes manifests are stored in the `k8s/` directory for convenience.
-This works for our single-binary, demo use case.
-
-```
-# k8s/
-# ├── deployment.yaml
-# └── service.yaml
-```
-
-In production, you should use Kustomize, Helm, or similar, and move the
-manifests to a dedicated GitOps repo. That will give you clean separation
-of app code vs. cluster state.
-
-Alternatively, if you prefer monorepos, you could do something like:
-
-```
-├── apps
-│   ├── base
-│   ├── production 
-│   └── staging
-├── infrastructure
-│   ├── base
-│   ├── production 
-│   └── staging
-└── clusters
-    ├── production
-    └── staging
-```
-
 ## License
 
 This project uses the MIT license. See [LICENSE](LICENSE) for the full text.
