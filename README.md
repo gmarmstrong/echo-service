@@ -73,26 +73,28 @@ and you should get
 
 ### Kubernetes usage
 
-The manifests in `k8s/` let you spin up the service on any cluster.  
+*For a dev environment only*, start by building and loading the image
+locally.
 
-These instructions use minikube.
-On Kind or a real cluster, just skip the minikube‑specific commands.
-
-```sh
-# Start a local cluster
-minikube start
-
-# Build or load the image inside minikube's container runtime
+```bash
+# Point Docker to Minikube’s daemon
 eval "$(minikube -p minikube docker-env)"
-docker build -t echo-service:0.1.0 .
 
-# Deploy the manifests
-kubectl apply -f k8s/
+# Build the :dev tag referenced by the dev overlay
+docker build -t ghcr.io/gmarmstrong/echo-service:dev .
+```
+
+Now, *regardless of environment*, do the rollout:
+
+```bash
 kubectl rollout status deployment/echo-service
+```
 
-# Access the service
-minikube service echo-service --url       # prints http://<node-ip>:<port>
-curl -s $(minikube service echo-service --url)/hello | jq .
+We can now verify that the rollout was successful:
+
+```bash
+kubectl port-forward svc/echo-service 8080:80 &
+curl -s http://localhost:8080/hello | jq .
 ```
 
 ## Endpoints
