@@ -127,10 +127,10 @@ The *Build container image* workflow (`.github/workflows/build-image.yml`) runs 
 
 ```sh
 # Static analysis
-go vet ./cmd/echo-service
+go vet ./...
 
 # Unit tests
-go test ./cmd/echo-service -v
+go test ./... -v
 
 # Check that the image builds and runs
 docker build -t echo-service:dev .
