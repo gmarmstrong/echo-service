@@ -2,6 +2,8 @@
 
 ## Usage
 
+### Basic usage (non-K8s)
+
 From the repository root, run:
 
 ```sh
@@ -33,6 +35,10 @@ and you should get
   "remote_addr": "[::1]:65325"
 }
 ```
+
+### Deployment with Kubernetes
+
+- TODO
 
 ## Project structure
 
