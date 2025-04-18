@@ -2,7 +2,13 @@
 
 ## Usage
 
-### Basic usage (non-K8s)
+### Basic usage (with Go, no Docker)
+
+```sh
+go run ./cmd/echo-service
+```
+
+### Docker usage (with Docker, no K8s)
 
 From the repository root, run:
 
@@ -36,7 +42,7 @@ and you should get
 }
 ```
 
-### Deployment with Kubernetes
+### Kubernetes usage
 
 - TODO
 
