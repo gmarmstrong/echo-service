@@ -4,6 +4,16 @@ Tiny Go HTTP server that simply echoes the request it receives. May be useful fo
 
 ![CI](https://github.com/gmarmstrong/echo-service/actions/workflows/build-image.yml/badge.svg)
 
+## Requirements
+
+Requirements vary depending on how you want to use this.
+
+* jq for pretty-printing JSON output (optional)
+* Go 1.22+ (only for `go run` / local builds)  
+* Docker 20+ (only for the container demo)  
+* kubectl and a cluster (for the Kubernetes section)
+* Optionally, minikube (for the Kubernetes section)
+
 ## Usage
 
 ### Basic usage (with Go, no Docker)
