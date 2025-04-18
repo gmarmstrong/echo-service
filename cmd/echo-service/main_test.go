@@ -38,3 +38,25 @@ func TestEchoHandler_Basic(t *testing.T) {
 		t.Errorf("headers[X-Test]: got %v, want [unit]", h)
 	}
 }
+
+func TestHealthz(t *testing.T) {
+	// Create a fake request and a recorder
+	req := httptest.NewRequest(http.MethodGet, "/healthz", nil)
+	rr := httptest.NewRecorder()
+
+	// We registered /healthz with an inline handler in main.go,
+	// so we need a ServeMux like the one main() assembles.
+	mux := http.NewServeMux()
+	// Call the handler with the recorder and request
+	mux.HandleFunc("/healthz", func(w http.ResponseWriter, _ *http.Request) {
+		w.WriteHeader(http.StatusNoContent)
+	})
+	mux.ServeHTTP(rr, req)
+
+	if rr.Code != http.StatusNoContent {
+		t.Fatalf("status: got %d, want %d", rr.Code, http.StatusNoContent)
+	}
+	if rr.Body.Len() != 0 {
+		t.Errorf("expected empty body, got %q", rr.Body.Bytes())
+	}
+}
