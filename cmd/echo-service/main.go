@@ -13,7 +13,6 @@ import (
 )
 
 // TODO Could use some more logging
-// TODO Unit tests
 
 // responsePayload mirrors the incoming request so callers can verify round‑trip.
 type responsePayload struct {

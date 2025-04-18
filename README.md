@@ -125,8 +125,8 @@ The *Build container image* workflow (`.github/workflows/build-image.yml`) runs 
 # Static analysis
 go vet ./cmd/echo-service
 
-# Unit tests (once added)
-go test .
+# Unit tests
+go test ./cmd/echo-service
 
 # Check that the image builds and runs
 docker build -t echo-service:dev .
