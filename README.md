@@ -5,7 +5,13 @@
 From the repository root, run:
 
 ```sh
-go run ./cmd/echo-service
+docker build -t echo-service:0.1.0 .
+docker run --rm -p 8080:8080 echo-service:0.1.0
+```
+
+Then in another terminal instance, run:
+
+```sh
 curl -s http://localhost:8080/hello | jq .
 ```
 
