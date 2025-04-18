@@ -130,7 +130,7 @@ The *Build container image* workflow (`.github/workflows/build-image.yml`) runs 
 go vet ./cmd/echo-service
 
 # Unit tests
-go test ./cmd/echo-service
+go test ./cmd/echo-service -v
 
 # Check that the image builds and runs
 docker build -t echo-service:dev .
