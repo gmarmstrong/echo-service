@@ -3,7 +3,7 @@ name: Build container image
 on:
   push:
     branches: [main]
-    paths: ["**/*.go", "Dockerfile", "k8s/**", ".github/workflows/docker-build.yml"]
+    paths: ["**/*.go", "Dockerfile", "k8s/**", ".github/workflows/build-image.yaml"]
   workflow_dispatch:
 
 permissions:
