@@ -1,0 +1,37 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+# Use the canonical manifests
+resources:
+  - ../../base
+
+# Pin to a signed (ideally immutable) image tag pushed by CI
+images:
+  - name: ghcr.io/gmarmstrong/echo-service
+    newName: ghcr.io/gmarmstrong/echo-service
+    newTag: 0.1.0 # bump to use a newer release
+
+patches:
+  # Scale to 3 replicas and add resource limits/requests
+  - target:
+      kind: Deployment
+      name: echo-service
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: echo-service
+      spec:
+        replicas: 3
+        template:
+          spec:
+            containers:
+              - name: app
+                imagePullPolicy: Always
+                resources:
+                  requests:
+                    cpu: "25m"
+                    memory: "64Mi"
+                  limits:
+                    cpu: "100m"
+                    memory: "128Mi"
