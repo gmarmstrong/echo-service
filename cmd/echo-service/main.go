@@ -36,6 +36,11 @@ func echoHandler(w http.ResponseWriter, r *http.Request) {
 	})
 }
 
+// healthzHandler responds with HTTP 204 No Content
+func healthzHandler(w http.ResponseWriter, _ *http.Request) {
+    w.WriteHeader(http.StatusNoContent)
+}
+
 func main() {
 	port := os.Getenv("PORT")
 	// TODO Need to validate port number?
@@ -45,9 +50,14 @@ func main() {
 	// TODO Restrict to localhost or a specific interface/IP address?
 	addr := net.JoinHostPort("", port)
 
+	// Set up our ServeMux, an HTTP request multiplexer.
+	// It will match the URL of incoming requests against a list
+	// of registered patterns and call the handler for the one that
+	// most closely matches the URL.
 	mux := http.NewServeMux()
+	// Register patterns for handlers.
 	mux.HandleFunc("/", echoHandler)
-	mux.HandleFunc("/healthz", func(w http.ResponseWriter, _ *http.Request) { w.WriteHeader(http.StatusNoContent) })
+	mux.HandleFunc("/healthz", healthzHandler)
 
 	// Use slog (built‑in structured logging).
 	// TODO Also add ReadTimeout and WriteTimeout?

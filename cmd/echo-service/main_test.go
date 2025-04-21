@@ -71,19 +71,13 @@ func TestEchoHandler_MultiValueHeaderAndPOST(t *testing.T) {
 	}
 }
 
-func TestHealthz(t *testing.T) {
+func TestHealthzHandler(t *testing.T) {
 	// Create a synthetic request and a recorder
 	req := httptest.NewRequest(http.MethodGet, "/healthz", nil)
 	rr := httptest.NewRecorder()
 
-	// We registered /healthz with an inline handler in main.go,
-	// so we need a ServeMux like the one main() assembles.
-	mux := http.NewServeMux()
-	// Call the handler with the recorder and request
-	mux.HandleFunc("/healthz", func(w http.ResponseWriter, _ *http.Request) {
-		w.WriteHeader(http.StatusNoContent)
-	})
-	mux.ServeHTTP(rr, req)
+	// Call the healthz handler with the recorder and request
+	healthzHandler(rr, req)
 
 	if rr.Code != http.StatusNoContent {
 		t.Fatalf("status: got %d, want %d", rr.Code, http.StatusNoContent)
