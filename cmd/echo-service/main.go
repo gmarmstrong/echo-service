@@ -60,12 +60,15 @@ func main() {
 	mux.HandleFunc("/healthz", healthzHandler)
 
 	// Use slog (built‑in structured logging).
-	// TODO Also add ReadTimeout and WriteTimeout?
 	logger := slog.New(slog.NewTextHandler(os.Stdout, nil))
+
 	server := &http.Server{
 		Addr:              addr,
 		Handler:           mux,
 		ReadHeaderTimeout: 5 * time.Second,
+		ReadTimeout: 	   5 * time.Second,
+		WriteTimeout: 	   10 * time.Second,
+		IdleTimeout: 	   60 * time.Second,
 		ErrorLog:          slog.NewLogLogger(logger.Handler(), slog.LevelError),
 	}
 
