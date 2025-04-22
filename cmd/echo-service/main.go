@@ -38,7 +38,7 @@ func echoHandler(w http.ResponseWriter, r *http.Request) {
 
 // healthzHandler responds with HTTP 204 No Content
 func healthzHandler(w http.ResponseWriter, _ *http.Request) {
-    w.WriteHeader(http.StatusNoContent)
+	w.WriteHeader(http.StatusNoContent)
 }
 
 func main() {
@@ -66,9 +66,9 @@ func main() {
 		Addr:              addr,
 		Handler:           mux,
 		ReadHeaderTimeout: 5 * time.Second,
-		ReadTimeout: 	   5 * time.Second,
-		WriteTimeout: 	   10 * time.Second,
-		IdleTimeout: 	   60 * time.Second,
+		ReadTimeout:       5 * time.Second,
+		WriteTimeout:      10 * time.Second,
+		IdleTimeout:       60 * time.Second,
 		ErrorLog:          slog.NewLogLogger(logger.Handler(), slog.LevelError),
 	}
 
